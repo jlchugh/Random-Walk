@@ -1,6 +1,3 @@
-import matplotlib.animation as ani
-import numpy as np
-import matplotlib.pyplot as plt
 import random
 
 steps = int(input("enter number of steps"))
@@ -20,3 +17,6 @@ def create_single_particle_diffusion(steps):
 
         position.append([new_position_x, new_position_y])
     return position
+
+
+def create_single_particle_diffusion_with_momentum(steps):
