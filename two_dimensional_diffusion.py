@@ -7,7 +7,8 @@ import pdb
 ####################################################
 
 steps = int(input("enter number of steps "))
-number_of_particles = int(input("enter number of particles "))
+#number_of_particles = int(input("enter number of particles "))
+number_of_particles = 1
 paths = []
 for i in range(number_of_particles):
     paths.append(random_walk_in_two_dimensions.create_single_particle_diffusion(steps))
@@ -21,8 +22,8 @@ for path in paths:
 
 fig = plt.figure()
 
-axis = plt.axes(xlim =(-1*steps, steps),
-                ylim =(-1*steps, steps))
+#axis = plt.axes(xlim =(-1*steps, steps), ylim =(-1*steps, steps))
+axis = plt.axes(xlim =(-50, 50), ylim =(-50,50))
 
 line, = axis.plot([], [], lw = 2)
 
@@ -46,19 +47,22 @@ def animate(i):
     t = 0.1 * i
 
     # x, y values to be plotted
-    x = next(x_iterator)
-    y = next(y_iterator)
+    x = next(x_iterator,None)
+    y = next(y_iterator,None)
 
     # appending values to the previously
     # empty x and y data holders
     xdata.append(x)
     ydata.append(y)
     line.set_data(xdata, ydata)
+    axis.relim()
+    axis.autoscale_view()
 
     return line,
 
 # calling the animation function
 anim = animation.FuncAnimation(fig, animate, init_func = init,frames = 500,interval = 20, blit = True)
-
-
-plt.show()
+#plt.show()
+mywriter = animation.FFMpegWriter(fps=60)
+anim.save('myanimation.mp4',writer=mywriter)
+print("done")
