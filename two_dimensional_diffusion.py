@@ -23,7 +23,7 @@ for path in paths:
 fig = plt.figure()
 
 #axis = plt.axes(xlim =(-1*steps, steps), ylim =(-1*steps, steps))
-axis = plt.axes(xlim =(-50, 50), ylim =(-50,50))
+axis = plt.axes(xlim =(-30, 30), ylim =(-30,30))
 
 line, = axis.plot([], [], lw = 2)
 
@@ -62,7 +62,7 @@ def animate(i):
 
 # calling the animation function
 anim = animation.FuncAnimation(fig, animate, init_func = init,frames = 500,interval = 20, blit = True)
-#plt.show()
+plt.show()
 mywriter = animation.FFMpegWriter(fps=60)
-anim.save('myanimation.mp4',writer=mywriter)
+#anim.save('myanimation.mp4',writer=mywriter)
 print("done")
